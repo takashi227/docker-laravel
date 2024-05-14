@@ -6,6 +6,10 @@ services:
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
   nginx:
     image: nginx:1.26.0-alpine
     ports:
@@ -22,5 +26,11 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      TZ: ${DB_TIMEZONE:-Asia/Tokyo}
 volumes:
   db-store:
