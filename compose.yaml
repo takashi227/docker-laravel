@@ -34,5 +34,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       TZ: ${DB_TIMEZONE:-Asia/Tokyo}
+  mailpit:
+    image: axllent/mailpit:v1.18
+    ports:
+      - 8025:8025
+      - 1025:1025
 volumes:
   db-store:
